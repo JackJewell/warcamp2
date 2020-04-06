@@ -1,0 +1,13 @@
+#footer {
+    background-color: darkred;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 0 10px grey;
+}
+
+.footerText{
+    width: 100%;
+    color: white;
+}
