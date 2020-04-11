@@ -25,7 +25,6 @@ function App() {
             <Route  path="/newlist/buildList/:id" component = {ListBuild}/>
             <Route  path="/newlist/:faction" component = {SubFactionSelect}/>
         </Switch>
-        <a href="" data-uk-totop></a>
       </div>
     <Footer/>
     </div>

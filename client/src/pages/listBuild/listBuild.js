@@ -145,7 +145,8 @@ class ListBuild extends Component{
                                return(
                                     <div>
                                         <Unit  name = {result.name} class = {result.class} points = {result.points}>
-                                            <button className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+</button>
+                                            <button className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+
+                                            </button>
                                         </Unit>
                                     </div>
                                 ) 

@@ -1,8 +1,19 @@
 #myNavbar{
     background-color: darkred;
     box-shadow: 0 0 10px grey;
+    font-family: 'Cinzel', serif;
 }
 
 .text{
     color: white;
+    font-family: 'Cinzel', serif;
+}
+
+#crown{
+    width: 100px;
+}
+
+.font{
+    font-family: 'Cinzel', serif;
+    text-shadow: 2px 2px 5px black;
 }

@@ -1,3 +1,41 @@
 .content{
-    margin: 2% 10% 10% 10%;
+    margin: 0% 10% 00% 10%;
+    padding: 2% 10% 20% 10%;
+    min-height: 100%;
+    border-style: none solid none solid;
+    border-color: black;
+    border-width: 2px;
+    overflow: visible;
+    background-color: white;
+    box-shadow: 0 0 20px grey;
+    font-family: 'Cinzel', serif;
+}
+
+h1,h2,h3,h4,h5,h6,p,a{
+    font-family: 'Cinzel', serif;
+}
+
+.App{
+    height: 100%;
+    overflow: auto;
+    font-family: 'Cinzel', serif;
+}
+
+#root{
+    height:100%;
+    overflow: auto;
+    font-family: 'Cinzel', serif;
+}
+
+body{
+    height: 100%;
+    overflow: auto;
+    font-family: 'Cinzel', serif;
+}
+
+html{
+    height: 100%;
+    overflow: auto;
+    background-color: wheat;
+    font-family: 'Cinzel', serif;
 }
