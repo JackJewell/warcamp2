@@ -4,7 +4,8 @@ export function UnitContainer({children}) {
     return(
         <div>
             <h2>Available Units</h2>
-            <ul>
+            <hr className="uk-divider-icon"></hr>
+            <ul data-uk-accordion>
                 {children}
             </ul>
         </div>

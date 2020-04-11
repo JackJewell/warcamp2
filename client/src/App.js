@@ -15,15 +15,18 @@ function App() {
     <Router>
     <div className="App">
       <Navbar/>
-      <Switch>
-          <Route exact path= "/" component = {Home}/>
-          <Route exact path= "/about" component = {About}/>
-          <Route exact path="/listSelect" component = {ListSelect}/>
-          <Route exact path="/newlist/buildList/new" component = {FactionSelect}/>
-          <Route path="/buildList/:id" component = {ListBuild}/>
-          <Route  path="/newlist/buildList/:id" component = {ListBuild}/>
-          <Route  path="/newlist/:faction" component = {SubFactionSelect}/>
-      </Switch>
+      <div className = "content">
+        <Switch>
+            <Route exact path= "/" component = {Home}/>
+            <Route exact path= "/about" component = {About}/>
+            <Route exact path="/listSelect" component = {ListSelect}/>
+            <Route exact path="/newlist/buildList/new" component = {FactionSelect}/>
+            <Route path="/buildList/:id" component = {ListBuild}/>
+            <Route  path="/newlist/buildList/:id" component = {ListBuild}/>
+            <Route  path="/newlist/:faction" component = {SubFactionSelect}/>
+        </Switch>
+        <a href="" data-uk-totop></a>
+      </div>
     <Footer/>
     </div>
     </Router>

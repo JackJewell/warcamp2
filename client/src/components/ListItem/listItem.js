@@ -3,8 +3,12 @@ import React from "react";
 const ListItem = (props) => {
     return(
         <div>
-            <h5>{props.name}: {props.points}</h5>
-            <button>X</button>
+            <hr ></hr>
+            <div className="uk-grid-small" data-uk-grid>
+                <div className="uk-width-expand"><h5>{props.name}</h5></div>
+                    <div className="uk-padding-small">{props.points}</div>
+                    {props.children}
+            </div>
         </div>
     )
 }

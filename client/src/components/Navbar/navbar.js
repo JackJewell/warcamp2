@@ -4,41 +4,34 @@ import "./style.css"
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Navbar() {
   return (
-    <div className="border-bottom border-white">
-      <nav id = "myNavbar" className="navbar navbar-expand-lg navbar-dark">
-        <a className="navbar-brand" href="/">
+    <nav className="uk-navbar-container">
+      <div id = "myNavbar" className="uk-navbar-left">
+        <a className="uk-navbar-item uk-logo text" href="/">
           War Camp
         </a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
 
-        <div className = "collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
+        <div className = "uk-navbar-toggle">
+          <span uk-navbar-toggle-icon></span>
+          <ul className="uk-navbar-nav">
+            <li>
+              <a className="uk-navbar-nav text " href="/about">
                 About
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/listSelect">
+            <li>
+              <a className="uk-navbar-nav text" href="/listSelect">
                 Lists
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/play">
-                Play
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/login">
+            <li>
+              <a className="uk-navbar-nav text" href="/login">
                 Login
               </a>
             </li>
           </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 

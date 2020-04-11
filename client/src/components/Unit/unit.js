@@ -2,10 +2,15 @@ import React from "react";
 
 const Unit = (props) => {
     return(
-        <div>
-            <h5>{props.name}</h5>
-            <p>Class: {props.class}</p>
-            <p>Points: {props.points}</p>
+        <div className="uk-card uk-card-default uk-padding-small">
+            <div className="uk-grid-small" data-uk-grid>
+                <h5 className="uk-card-title uk-width-expand">{props.name}</h5>
+                <p>Points: {props.points}</p>
+            </div>
+            <br></br>
+            <div className = "uk-padding-small">
+                {props.children}
+            </div>
         </div>
     )
 }

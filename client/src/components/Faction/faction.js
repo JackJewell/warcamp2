@@ -2,9 +2,9 @@ import React from "react";
 
 const Faction = (props) => {
     return(
-        <button >
-            <a href = {"/newList/"+props.link}>{props.name}</a>
-        </button>
+        <a className="uk-button uk-button-default" href = {"/newList/"+props.link}>
+            {props.name}
+        </a>
     )
 }
 
