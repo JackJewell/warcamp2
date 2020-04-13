@@ -3,7 +3,7 @@ const db = require("../models");
 
 //This file empties the database and inserts the seeds below
 
-mongoose.connect("mongodb://<StandardUser>:<StandardPassword1>@ds033877.mlab.com:33877/heroku_rvrgs3vv" || "mongodb://localhost/warcampDB", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/warcampDB", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('MongoDB Connected...'))
     .catch((err) => console.log(err))
 
