@@ -11,8 +11,7 @@ class ListBuild extends Component{
         id: "",
         totalListPoints: 0,
         listName: "",
-        listItems: [],
-        unitIds: [],
+        selectedUnits: [],
         availableUnits: [],
         faction: "",
         factionLink: "",
@@ -31,32 +30,11 @@ class ListBuild extends Component{
                  factionLink: res.data.factionLink,
                  subFaction: res.data.subFaction,
                  totalListPoints: res.data.totalPoints,
-                 unitIds: res.data.units,
+                 selectedUnits: res.data.units
                 })
-             this.loadListUnits(res.data.units)
              this.loadUnits()}
             )
             .catch(err => console.log(err));
-    }
-
-    loadListUnits(units){
-        let unitArray = [];
-        units.map(result =>{
-            API.getUnitStats(result)
-            .then(res => {
-                console.log(res);
-                let unit = {
-                    name: res.data.name,
-                    points: res.data.points,
-                    id: res.data._id
-                }
-                unitArray.push(unit);
-                this.setState({listItems: unitArray});
-            }
-            )
-            .catch(err => console.log(err));
-        })
-        
     }
 
     componentDidMount(){
@@ -75,7 +53,7 @@ class ListBuild extends Component{
 
     addPoints(){
         let pointTotal = 0;
-        this.state.listItems.map(result=>{
+        this.state.selectedUnits.map(result=>{
             let points = parseInt(result.points);
             pointTotal = points + pointTotal;
             return points;
@@ -84,20 +62,30 @@ class ListBuild extends Component{
     }
 
     addUnits(event){
-        let unit = {
-            name: event.target.name,
-            points: event.target.value,
-            id: event.target.id
-        }
+        API.getUnitStats(event.target.id)
+            .then(res => {
+            console.log(res); 
+            let newId = this.state.selectedUnits.length;
+            newId++;
+            let unit = {
+                name: res.data.name,
+                points: res.data.points,
+                unitId: res.data._id,
+                availableWeaponry: res.data.weaponry,
+                selectedWeaponry: "",
+                id: newId
+                }
+            this.updateUnitList(unit)
+            }
+            )
+            .catch(err => console.log(err))
+    }
+    
+    updateUnitList(unit){
         console.log(unit);
-        let unitArray = this.state.listItems;
-        let unitIdArray = this.state.unitIds;
-        let newId = event.target.id;
-        console.log(newId);
-        unitIdArray.push(newId);
-        console.log(unitIdArray);
+        let unitArray = this.state.selectedUnits;
         unitArray.push(unit);
-        this.setState({listItems: unitArray, unitIds: unitIdArray});
+        this.setState({selectedUnits: unitArray});
         this.addPoints();
     }
 
@@ -110,7 +98,7 @@ class ListBuild extends Component{
             factionLink: state.factionLink, 
             subFaction: state.subFaction,
             totalPoints: state.totalListPoints,
-            units: state.unitIds
+            units: state.selectedUnits
          };
          API.updateList(this.state.id,listVar)
              .then(res => {
@@ -120,14 +108,26 @@ class ListBuild extends Component{
                  .catch(err => console.log(err))
     }
 
-    removeUnit(unit){
-        let unitArray = this.state.unitIds;
-        let unitDetailArray = this.state.listItems;
-        let unitPos = unitArray.indexOf(unit.target.value);
-        unitArray.splice(unitPos,1);
-        unitDetailArray.splice(unitPos,1);
-        this.setState({unitIds: unitArray,listItems: unitDetailArray});
-        this.addPoints();
+    removeUnit(event){
+        console.log(event.target.value);
+        let unitId = event.target.value;
+        let i = 0;
+        let unitArray = this.state.selectedUnits;
+        unitArray.map(result =>{
+            if(result.id == unitId){
+                unitArray.splice(i,1);
+                this.setState({selectedUnits: unitArray});
+                this.addPoints();
+            }
+            i++;
+        })
+    }
+
+    saveWeaponry(event){
+        console.log("set weapon")
+        let id = event.target.id;
+        let newWeapon = event.target.value;
+        this.setState({...this.state.selectedUnits[id], selectedWeaponry: newWeapon})
     }
 
     render(){
@@ -144,9 +144,8 @@ class ListBuild extends Component{
                             if(result.class === "command"){
                                return(
                                     <div>
-                                        <Unit  name = {result.name} class = {result.class} points = {result.points}>
-                                            <button className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+
-                                            </button>
+                                        <Unit id={result.id} name = {result.name} class = {result.class} points = {result.points} stats = {result.stats} traits={result.traits} abilities = {result.abilities} weaponry = {result.weaponry}>
+                                            <button className = "uk-float-right uk-margin-small" id = {result._id} onClick = {e => this.addUnits(e, "value")}>+</button>
                                         </Unit>
                                     </div>
                                 ) 
@@ -158,8 +157,8 @@ class ListBuild extends Component{
                             if(result.class === "infantry"){
                                return(
                                     <div>
-                                        <Unit  name = {result.name} class = {result.class} points = {result.points}>
-                                            <button  className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+</button>
+                                        <Unit  name = {result.name} class = {result.class} points = {result.points} stats = {result.stats} traits={result.traits} abilities = {result.abilities} weaponry = {result.weaponry}>
+                                            <button  className = "uk-float-right uk-margin-small"  id = {result._id} onClick = {e => this.addUnits(e, "id")}>+</button>
                                         </Unit>
                                     </div>
                                 ) 
@@ -171,8 +170,8 @@ class ListBuild extends Component{
                             if(result.class === "ranged"){
                                return(
                                     <div>
-                                        <Unit  name = {result.name} class = {result.class} points = {result.points}>
-                                            <button  className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+</button>
+                                        <Unit  name = {result.name} class = {result.class} points = {result.points} stats = {result.stats} traits={result.traits} abilities = {result.abilities} weaponry = {result.weaponry}>
+                                            <button  className = "uk-float-right uk-margin-small"  id = {result._id} onClick = {e => this.addUnits(e, "id")}>+</button>
                                         </Unit>
                                     </div>
                                 ) 
@@ -184,8 +183,8 @@ class ListBuild extends Component{
                             if(result.class === "cavalry"){
                                return(
                                     <div>
-                                        <Unit  name = {result.name} class = {result.class} points = {result.points}>
-                                            <button  className = "uk-float-right uk-margin-small" id = {result._id} name = {result.name} value = {result.points} onClick = {e => this.addUnits(e, "value")}>+</button>
+                                        <Unit  name = {result.name} class = {result.class} points = {result.points} stats = {result.stats} traits={result.traits} abilities = {result.abilities} weaponry = {result.weaponry}>
+                                            <button  className = "uk-float-right uk-margin-small"  id = {result._id} onClick = {e => this.addUnits(e, "id")}>+</button>
                                         </Unit>
                                     </div>
                                 ) 
@@ -193,12 +192,13 @@ class ListBuild extends Component{
                         })}
                     </ClassContainer>
                 </UnitContainer>
+
                 <ListContainer>
-                    {this.state.listItems.map(result=>{
+                    {this.state.selectedUnits.map(result=>{
                         return(
                             <div>
-                                <ListItem name = {result.name} points = {result.points}>
-                                    <button className="uk-float-right uk-margin-small uk-button uk-button-default" type = "button" value = {result.id} onClick = {e => this.removeUnit(e,"value")} >x</button>
+                                <ListItem id = {result.id} name = {result.name} points = {result.points} weaponry = {result.availableWeaponry} selection = {result.selectedWeaponry} saveFunction = {this.saveWeaponry}>
+                                    <button className="uk-margin-small uk-button uk-button-default" type = "button" value = {result.id} onClick = {e => this.removeUnit(e,"value")} >x</button>
                                 </ListItem>
                             </div>
                         )
