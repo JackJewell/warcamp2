@@ -28,13 +28,11 @@ function ListSelect(){
     }
     return(
         <div>
-            <p>list select page</p>
-            <ul>
-                <li>
-                    <a className="uk-button uk-button-default" href = {"/newlist/buildList/new"}>
-                            Build New List
-                    </a>
-                </li>
+            <h4>Build a new list</h4>
+                <a className="uk-icon-button uk-button-secondary" data-uk-icon="plus" href = {"/newlist/buildList/new"}>
+            </a>
+            <h4>Your Lists</h4>
+            <ul className="uk-list">
                 {lists.map(result=>{
                     return(
                         <li>

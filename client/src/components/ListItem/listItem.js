@@ -11,11 +11,9 @@ const ListItem = (props) => {
         <div>
             <hr ></hr>
             <div className="uk-grid-small" data-uk-grid>
-                <div className="uk-width-expand">
-                    <h4>{props.name}</h4>
+                <div className="uk-width-1-1"> 
+                    <h4 className="uk-margin">{props.name}</h4>
                 </div>
-                <div className="uk-padding-small">{props.points}</div>
-                <br></br>
                 <form>
                     <label className="uk-form-label" data-for="form-horizontal-select">Selected Weaponry</label>
                     <select className="uk-select">
@@ -34,6 +32,7 @@ const ListItem = (props) => {
                         })}
                     </select>
                 </form>
+                <div className="uk-padding-small">{props.points}</div>
                 {props.children}
             </div>
         </div>

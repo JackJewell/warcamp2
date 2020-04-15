@@ -1,5 +1,5 @@
 #footer {
-    background-color: darkred;
+    background-color: #650e0f;
     position: relative;
     left: 0;
     bottom: 0;
@@ -10,4 +10,5 @@
 .footerText{
     width: 100%;
     color: white;
+    font-family: 'Cinzel', serif;
 }

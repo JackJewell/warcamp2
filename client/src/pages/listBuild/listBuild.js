@@ -198,7 +198,7 @@ class ListBuild extends Component{
                         return(
                             <div>
                                 <ListItem id = {result.id} name = {result.name} points = {result.points} weaponry = {result.availableWeaponry} selection = {result.selectedWeaponry} saveFunction = {this.saveWeaponry}>
-                                    <button className="uk-margin-small uk-button uk-button-default" type = "button" value = {result.id} onClick = {e => this.removeUnit(e,"value")} >x</button>
+                                    <button className="uk-float-right uk-padding-small uk-padding-remove-vertical uk-button uk-button-default" type = "button" value = {result.id} onClick = {e => this.removeUnit(e,"value")} >x</button>
                                 </ListItem>
                             </div>
                         )
