@@ -11,5 +11,7 @@ router.route("/:id")
   .get(listController.findById)
   .delete(listController.remove)
   .put(listController.update);
- 
+
+router.route("/user/:userId")
+  .get(listController.findByUserId)
 module.exports = router;

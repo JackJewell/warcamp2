@@ -7,7 +7,8 @@ const listSchema = new Schema({
   subFaction: { type: String, required: true },
   factionLink: { type: String, required: true },
   totalPoints: {type: Number, required: true},
-  units: []
+  units: [],
+  userId: {type: String}
 });
 
 const List = mongoose.model("List", listSchema);

@@ -1,8 +1,9 @@
 import React from "react";
+import "./style.css";
 
 const Unit = (props) => {
     return(
-        <div className="uk-card uk-card-default uk-padding-small">
+        <div className="uk-card uk-card-default uk-padding-small uk-margin-small unit">
             <div className="uk-grid-small" data-uk-grid>
                 <h5 className="uk-card-title uk-width-expand">{props.name}</h5>
                 <p>Points: {props.points}</p>

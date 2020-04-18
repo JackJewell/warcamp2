@@ -29,7 +29,7 @@ function ListSelect(){
     return(
         <div>
             <h4>Build a new list</h4>
-                <a className="uk-icon-button uk-button-secondary" data-uk-icon="plus" href = {"/newlist/buildList/new"}>
+                <a className="uk-icon-button uk-button-secondary" data-uk-icon="plus" href = "/newlist/buildList/new">
             </a>
             <h4>Your Lists</h4>
             <ul className="uk-list">

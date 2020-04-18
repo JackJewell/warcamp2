@@ -16,6 +16,9 @@ export default{
     getLists(){
         return axios.get("/api/lists")
     },
+    getUserLists(userId){
+        return axios.get(`/api/lists/user/${userId}`)
+    },
     getSpecificList(id){
         return axios.get(`/api/lists/${id}`)
     },
@@ -27,5 +30,11 @@ export default{
     },
     deleteList(id){
         return axios.delete(`/api/lists/${id}`)
+    },
+    checkUser(username){
+        return axios.get(`/api/users/validate/${username}`)
+    },
+    createUser(userVar){
+        return axios.post(`/api/users`,userVar)
     }
 }

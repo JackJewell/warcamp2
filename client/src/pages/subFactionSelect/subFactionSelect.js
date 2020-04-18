@@ -29,7 +29,6 @@ function SubFactionSelect(props){
         console.log(radioSubFaction);
         setSelectedSubFaction(radioSubFaction);
         commitList(newListName,radioSubFaction);
-        
     }
 
     function commitList(name,subFaction){
