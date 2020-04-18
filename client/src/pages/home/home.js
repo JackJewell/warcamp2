@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import "./style.css"
 import GlobalState from "../../utils/GlobalState"
 import OneImg from "./1.jpg";
 import TwoImg from "./2.jpg";
@@ -18,7 +19,7 @@ function Home(props){
             <h1>War Camp</h1>
             <hr></hr>
             <p>Welcome to War Camp, the website for Crownbreaker, the medieval fantasy war game</p>
-            <div data-uk-slideshow="autoplay: true; autoplay-interval: 3000">
+            <div id="slide" data-uk-slideshow="autoplay: true; autoplay-interval: 3000">
                 <ul className="uk-slideshow-items">
                     <li className="uk-animation-kenburns uk-animation-reverse">
                         <img src={OneImg} alt="" data-uk-cover/>
@@ -53,9 +54,9 @@ function Home(props){
                 </ul>
             </div>
             <p>Using this website you can create lists for your armies, learn about the game, and the setting.</p>
-            <a className="uk-button uk-button-default uk-width-1-3" href="/about">Learn About The Game</a>
-            <a className="uk-button uk-button-default uk-width-1-3" href="https://www.worldanvil.com/w/caracklyst-jackjewell">Learn About The World</a>
-            <a className="uk-button uk-button-default uk-width-1-3" href = "/newlist/buildList/new">Build a List</a>
+            <a className="uk-button uk-button-secondary uk-width-1-3" href="/about">Learn About The Game</a>
+            <a className="uk-button uk-button-secondary uk-width-1-3" href="https://www.worldanvil.com/w/caracklyst-jackjewell">Learn About The World</a>
+            <a className="uk-button uk-button-secondary uk-width-1-3" href = "/newlist/buildList/new">Build a List</a>
         </div>
     )
 }

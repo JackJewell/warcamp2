@@ -1,0 +1,6 @@
+#slide{
+    border-style: solid;
+    border-color: rgb(180, 180, 180);
+    border-width: 3px;
+    box-shadow: 0px 0px 10px grey;
+}
